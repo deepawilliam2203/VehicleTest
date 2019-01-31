@@ -46,10 +46,22 @@ public class StepDef_VehicleTest {
 		//System.out.println("when");
 	}
 
-	@Then("^the registration number should be displayed$")
-	public void the_registration_number_should_be_displayed() throws Throwable {
+	@Then("^the registration number cover start and end date should be displayed$")
+	public void the_registration_number_cover_start_and_end_Date_should_be_displayed() throws Throwable {
 		Thread.sleep(2000);
 		String res = driver.findElement(By.className("result")).getText();
+		try {
+			if(driver.findElements(By.className("resultDate")).size()==2) {
+				String coverStartDate = driver.findElements(By.className("resultDate")).get(0).getText();
+				String coverEndDate = driver.findElements(By.className("resultDate")).get(1).getText();
+				System.out.println("Cover Start Date:"+coverStartDate+" Cover End Date:"+coverEndDate);
+			}
+				
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(res.contains("OV12UYY")) {
 			assert (true);
 			System.out.println("vehicle exists");
